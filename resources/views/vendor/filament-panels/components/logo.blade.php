@@ -1,0 +1,1 @@
+<img src="{{ asset('images/rule.png') }}" alt="Logo Proyecto" class="h-16">
