@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->decimal('total_price', 10, 2);
             $table->enum('status', ['pending', 'processing', 'completed', 'declined'])
-            ->default('pending');
+                ->default('pending');
             $table->decimal('shipping_price')->nullable();
             $table->longText('notes');
             $table->softDeletes();
