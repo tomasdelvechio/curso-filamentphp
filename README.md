@@ -40,3 +40,19 @@ php artisan make:migration create_category_product_table
 # Hacer los pasos del video y al final del mismo
 php artisan migrate
 ```
+
+## Video 6
+
+```bash
+php artisan make:filament-resource Product
+
+php artisan storage:link
+```
+
+Si se usa artisan como servidor, en necesario modificar el archivo `.env`
+
+```bash
+APP_URL=http://127.0.0.1:8000
+```
+
+Poner la url que corresponda (ver si se ejecuta con sail, etc...)
