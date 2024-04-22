@@ -66,23 +66,41 @@ class ProductResource extends Resource
                             ])->columns(2),
                         Section::make('Pricing & Inventory')
                             ->schema([
-                                TextInput::make('sku'),
-                                TextInput::make('price'),
-                                TextInput::make('quantity'),
+                                TextInput::make('sku')
+                                    ->label('SKU (Stock Keeping Unit)')
+                                    ->unique()
+                                    ->required(),
+                                TextInput::make('price')
+                                    ->numeric()
+                                    ->rules('regex:/^\d{1,6}(\.\d{0,2})?$/')
+                                    ->required(),
+                                TextInput::make('quantity')
+                                    ->numeric()
+                                    ->minValue(0)
+                                    ->maxValue(10000)
+                                    ->required(),
                                 Select::make('type')
                                     ->options([
                                         'downloadable' => ProductTypeEnum::DOWNLOADABLE->value,
                                         'deliverable' => ProductTypeEnum::DELIVERABLE->value,
-                                    ]),
+                                    ])
+                                    ->required(),
                             ])->columns(2)
                     ]),
                 Group::make()
                     ->schema([
                         Section::make('Status')
                             ->schema([
-                                Toggle::make('is_visible'),
-                                Toggle::make('is_featured'),
-                                DatePicker::make('published_at'),
+                                Toggle::make('is_visible')
+                                    ->label('Visibility')
+                                    ->helperText('Enable or Disable product Visibility')
+                                    ->default(true),
+                                Toggle::make('is_featured')
+                                    ->label('Featured')
+                                    ->helperText('Enable or Disable product Status'),
+                                DatePicker::make('published_at')
+                                    ->label('Availability')
+                                    ->default(now()),
                             ])->columns(2),
                         Section::make('Product Image')
                             ->schema([
