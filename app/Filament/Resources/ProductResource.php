@@ -104,7 +104,11 @@ class ProductResource extends Resource
                             ])->columns(2),
                         Section::make('Product Image')
                             ->schema([
-                                FileUpload::make('image'),
+                                FileUpload::make('image')
+                                    ->directory('image-filament')
+                                    ->preserveFilenames()
+                                    ->image()
+                                    ->imageEditor(),
                             ])->collapsible(),
                         Section::make('Associations')
                             ->schema([
