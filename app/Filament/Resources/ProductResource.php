@@ -125,12 +125,27 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('image'),
-                TextColumn::make('name'),
-                TextColumn::make('brand.name'),
-                IconColumn::make('is_visible')->boolean(),
-                TextColumn::make('price'),
-                TextColumn::make('quantity'),
-                TextColumn::make('published_at'),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('brand.name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                IconColumn::make('is_visible')
+                    ->sortable()
+                    ->toggleable()
+                    ->label('Visibility')
+                    ->boolean(),
+                TextColumn::make('price')
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('quantity')
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('published_at')
+                    ->sortable()
+                    ->date(),
                 TextColumn::make('type'),
             ])
             ->filters([
