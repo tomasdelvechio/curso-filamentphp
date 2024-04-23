@@ -51,8 +51,14 @@ php artisan storage:link
 
 Si se usa artisan como servidor, en necesario modificar el archivo `.env`
 
-```bash
+```
 APP_URL=http://127.0.0.1:8000
 ```
 
 Poner la url que corresponda (ver si se ejecuta con sail, etc...)
+
+## Video 13
+
+```bash
+php artisan make:filament-resource Brand
+```
